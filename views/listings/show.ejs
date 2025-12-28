@@ -10,7 +10,7 @@
     <p class="text-muted">
       <i>Owned by </i
       ><span style="color: #64d15a;font-weight: 550;"
-        ><%= listing.owner.username %></span
+        ><%= listing.owner && listing.owner.username ? listing.owner.username : 'Anonymous' %></span
       >
     </p>
     <div class="card-body">
@@ -22,7 +22,7 @@
   </div>
   <br />
 </div>
-<% if (currUser && currUser._id.equals(listing.owner._id)) { %>
+<% if (currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
 <div class="btns row">
   <a
     href="/listings/<%= listing._id %>/edit"

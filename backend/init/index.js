@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
-const User = require("../models/user.js");
+const User = require("../models/User.js");
 
 if (process.env.NODE_ENV != "production"){
   require("dotenv").config({ path: require("path").join(__dirname, "../.env") });
@@ -18,10 +18,7 @@ if (!MONGO_URL) {
 
 async function main() {
   try {
-    await mongoose.connect(MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(MONGO_URL);
     console.log("✓ Connected to MongoDB Atlas");
   } catch (err) {
     console.error("✗ Database connection error:", err.message);
@@ -42,13 +39,11 @@ const initDB = async () => {
 
     if (!defaultUser) {
       console.log("\n⚠ No admin user found. Please create one:");
-      console.log("1. Start the app: npm start");
-      console.log("2. Go to: http://localhost:8080/signup");
-      console.log("3. Create a user with username 'admin'");
-      console.log("4. Run this script again: node init/index.js\n");
+      console.log("1. Start the backend: npm start (in backend folder)");
+      console.log("2. Use API or frontend to create a user with username 'admin'");
+      console.log("3. Run this script again: node init/index.js\n");
 
       // Create listings with a placeholder owner
-      // You'll need to update this after creating the admin user
       const modifiedData = initData.data.map((obj) => ({
         ...obj,
         owner: new mongoose.Types.ObjectId() // Temporary owner
@@ -68,7 +63,7 @@ const initDB = async () => {
     }
 
     console.log("\n✓ Database initialization complete!");
-    console.log("You can now start the app with: npm start\n");
+    console.log("You can now start the backend with: npm start\n");
 
   } catch (err) {
     console.error("✗ Error initializing database:", err.message);
