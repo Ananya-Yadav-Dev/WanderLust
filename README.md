@@ -4,7 +4,7 @@
 
 ---
 ## 🚀 Live Demo
-Check out the live version of the project here: [Wanderlust Live]([https://wanderlust-k1mg.onrender.com](https://wanderlust-frontend-ckbi.onrender.com/))
+Check out the live version of the project here: [Wanderlust Live](https://wanderlust-frontend-ckbi.onrender.com/)
 
 ![Website Preview](./frontend/public/assets/preview.png)
 
